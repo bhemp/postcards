@@ -1,0 +1,165 @@
+html,
+body,
+aside {
+    margin: 0;
+    padding: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 100vh;
+}
+
+section {
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+header {
+    font-family: Satisfy;
+    font-size: 60px;
+    text-align: center;
+    color: white;
+    background: #267A6A;
+}
+
+#headerbar {
+    height: 20px;
+    border-bottom: 2px solid darkgray;
+}
+
+.stripe-1 {
+    color: white;
+    background: #044438;
+}
+
+main {
+    height: 100vh;
+    background: #ebebeb;
+}
+
+#controlPanel {
+    height: 100vh;
+    background: #3C9281;
+    padding: 20px;
+    font-family: arial;
+    font-size: 24px;
+    text-align: left;
+    width: 100%;
+}
+
+#workspace {
+    margin-top: 20px;
+    position: relative;
+    width: 1000px;
+    height: 600px;
+}
+
+#workspace img {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#workspace .text-location {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    text-transform: uppercase;
+    font-family: Bevan;
+    font-size: 180px;
+    font-weight: bold;
+    -moz-text-stroke-color: #ffffff;
+    -webkit-text-stroke-color: #ffffff;
+    -moz-text-stroke-width: 3px;
+    -webkit-text-stroke-width: 3px;
+    background: url(../img/foreground.jpeg) no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    /* -webkit-background-clip clips the background of the element to the text */
+    -webkit-text-fill-color: transparent;
+    /* overrides the white text color in webkit browsers */
+    -webkit-background-clip: text;
+}
+
+#workspace .text-intro {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: dodgerblue;
+    font-size: 36px;
+    font-family: Knewave;
+    -moz-text-stroke-color: #000;
+    -webkit-text-stroke-color: #000;
+    -moz-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: 6px 6px #fff;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+}
+
+.stripe-border1 {
+    border-radius: 20px;
+    border: 16px solid transparent;
+    border-image: 16 repeating-linear-gradient(-45deg, red 0, red 1em, transparent 0, transparent 2em,
+    #58a 0, #58a 3em, transparent 0, transparent 4em);
+
+}
+/*
+
+.stripe-border2 {
+    border-radius: 20px;
+    border: 16px solid transparent;
+    border-image: linear-gradient(white, white), linear-gradient(60deg, orange 0%, orange 3.5%, white 3.5%, white 7%, hotpink 7%, hotpink 10.5%, black 10.5%, black 14%, brown 14%, brown 17.5%, aqua 17.5%, aqua 21%, green 21%, green 25%, orange 25%, orange 28.5%, white 28.5%, white 32%, hotpink 32%, hotpink 35.5%, black 35.5%, black 39%, brown 39%, brown 42.5%, aqua 42.5%, aqua 46%, green 46%, green 50%, orange 50%, orange 53.5%, white 53.5%, white 57%, hotpink 57%, hotpink 60.5%, black 60.5%, black 64%, brown 64%, brown 67.5%, aqua 67.5%, aqua 71%, green 71%, green 75%, orange 75%, orange 78.5%, white 78.5%, white 82%, hotpink 82%, hotpink 85.5%, black 85.5%, black 89%, brown 89%, brown 92.5%, aqua 92.5%, aqua 96%, green 96%, green 100%);
+}
+*/
+
+/*
+.overlay:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(127, 127, 127, 0.5);
+	background-image: radial-gradient(black 33%, transparent 33%);
+	background-size: 10px 10px;
+}
+*/
