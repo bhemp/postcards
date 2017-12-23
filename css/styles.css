@@ -1,11 +1,11 @@
 html,
-body,
-aside {
+body {
     margin: 0;
     padding: 0;
     margin-left: -15px;
     margin-right: -15px;
-    height: 100vh;
+    overflow: hidden;
+    height: 100%;
 }
 
 section {
@@ -32,25 +32,59 @@ header {
 }
 
 main {
-    height: 100vh;
     background: #ebebeb;
 }
 
-#controlPanel {
-    height: 100vh;
+#cpColumn {
     background: #3C9281;
-    padding: 20px;
+    max-width: 50vh;
+    height: 90vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.nopadding-left {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.nopadding-right {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+}
+
+.padding-bottom {
+    padding-bottom: 1em;
+}
+
+.margin-bottom {
+    margin-bottom: 1em;
+}
+
+#controlPanel {
+    padding-top: 20px;
+    padding-left: 20px;
     font-family: arial;
     font-size: 24px;
     text-align: left;
+    /*    max-width: 400px;*/
+}
+
+#controlPanel .btn {
     width: 100%;
+    font-size: 1em;
+    background-color: #CBE8E2;
+}
+
+#controlPanel input {
+    font-size: 1em;
 }
 
 #workspace {
-    margin-top: 20px;
     position: relative;
-    width: 1000px;
-    height: 600px;
+    margin: 20px;
+    width: 100vh;
+    height: 60vh;
 }
 
 #workspace img {
@@ -64,7 +98,7 @@ main {
     height: 100%;
 }
 
-#workspace .text-location {
+#mainText {
     position: absolute;
     top: 60%;
     left: 20%;
@@ -83,9 +117,10 @@ main {
     -webkit-text-fill-color: transparent;
     /* overrides the white text color in webkit browsers */
     -webkit-background-clip: text;
+
 }
 
-#workspace .text-intro {
+#workspace .text-sec {
     position: absolute;
     top: 10%;
     left: 10%;
@@ -97,6 +132,18 @@ main {
     -moz-text-stroke-width: 1px;
     -webkit-text-stroke-width: 1px;
     text-shadow: 6px 6px #fff;
+}
+
+#mainColor {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
 }
 
 .slider {
@@ -140,26 +187,42 @@ main {
     #58a 0, #58a 3em, transparent 0, transparent 4em);
 
 }
-/*
 
-.stripe-border2 {
-    border-radius: 20px;
-    border: 16px solid transparent;
-    border-image: linear-gradient(white, white), linear-gradient(60deg, orange 0%, orange 3.5%, white 3.5%, white 7%, hotpink 7%, hotpink 10.5%, black 10.5%, black 14%, brown 14%, brown 17.5%, aqua 17.5%, aqua 21%, green 21%, green 25%, orange 25%, orange 28.5%, white 28.5%, white 32%, hotpink 32%, hotpink 35.5%, black 35.5%, black 39%, brown 39%, brown 42.5%, aqua 42.5%, aqua 46%, green 46%, green 50%, orange 50%, orange 53.5%, white 53.5%, white 57%, hotpink 57%, hotpink 60.5%, black 60.5%, black 64%, brown 64%, brown 67.5%, aqua 67.5%, aqua 71%, green 71%, green 75%, orange 75%, orange 78.5%, white 78.5%, white 82%, hotpink 82%, hotpink 85.5%, black 85.5%, black 89%, brown 89%, brown 92.5%, aqua 92.5%, aqua 96%, green 96%, green 100%);
+.cpDiv {
+    background-color: #044438;
+    border-radius: 5px;
+    font-size: 1em;
+    color: white;
+    padding: 5px;
 }
-*/
 
-/*
-.overlay:after {
-	content: '';
-	display: block;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background: rgba(127, 127, 127, 0.5);
-	background-image: radial-gradient(black 33%, transparent 33%);
-	background-size: 10px 10px;
+input[type=radio] {
+    transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    display: inline-block;
 }
-*/
+
+#mainColor {
+    background-color: red;
+}
+
+#sliders h3 {
+    font-size: .9em;
+}
+
+.radio label {
+    font-size: 1em;
+    padding: 0;
+}
+
+#controlPanel .btn {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 1em;
+    border: 1px solid #044438;
+}

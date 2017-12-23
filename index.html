@@ -10,25 +10,22 @@
     <link href="css/resetCSS.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
-
-
     <link href="https://fonts.googleapis.com/css?family=Bangers|Bowlby+One+SC|Bungee+Inline|Changa+One|Lilita+One|Luckiest+Guy|Rammetto+One|Sigmar+One|Titan+One|Merienda+One|Teko|Cinzel|Bevan|Alegreya+Sans+SC|Knewave|Satisfy" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
     <script src="js/jscript.js"></script>
-
+    <script src="js/jscolor.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
+    <script src="js/jquery.PrintArea.js"></script>
 </head>
 
 <body>
@@ -48,77 +45,125 @@
 
         <main>
             <div class="row">
-                <div class="col-3">
-                    <div class="form-group" id="controlPanel">
+                <div class="col-4" id="cpColumn">
+                    <div class="form-group" id=controlPanel>
                         <form action="#">
-                            Background Image:
-                            <input type="file" class="form-control-file" id="bgImgFilename" onchange="previewFile()">
+                            <h3 class="cpDiv">Background:</h3>
 
-                            <br>Foreground Image:
-                            <input type="file" class="form-control-file" id="bgImgFilename">
-                            <br>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Border Image
-  </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="row">
+                                <div class="col-4 nopadding-right">
+                                    <div class="radio">
+                                        <label><input type="radio" name="mainImgRadio" value="image" id="RadioMI" checked>
+                                        Image:</label>
+                                    </div>
+                                </div>
+                                <div class="col-8 nopadding-left">
+                                    <input type="file" class="form-control-file" id="mainImgFilename">
                                 </div>
                             </div>
-                            <br>Location Name:
-                            <input type="text" class="form-control" id="location">
-                            <br>Intro:
-                            <br>
-                            <input type="text" class="form-control" id="intro">
-                            <br>
 
-                            <button type="button" class="btn btn-primary" id="generate">
+                            <div class="row">
+                                <div class="col-4 nopadding-right">
+                                    <div class="radio">
+                                        <label><input type="radio" name="mainImgRadio" value="color" id="RadioMC"> Color:</label>
+                                    </div>
+                                </div>
+                                <div class="col-8 nopadding-left padding-bottom">
+                                    <input class="jscolor" value="white" id="mainImgColor">
+                                </div>
+                            </div>
+
+                            <h3 class="cpDiv">Main Text:</h3>
+
+                            <div class="row">
+                                <div class="col-4 nopadding-right">
+                                    <div class="radio">
+                                        <label><input type="radio" name="mainTextRadio" value="image" id="RadioTI" checked>
+                                    Image:</label>
+                                    </div>
+                                </div>
+                                <div class="col-8 nopadding-left">
+                                    <input type="file" class="form-control-file" id="mainTextFilename">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4 nopadding-right">
+                                    <div class="radio">
+                                        <label><input type="radio" name="mainTextRadio" value="color" id="RadioTC"> Color:</label>
+                                    </div>
+                                </div>
+                                <div class="col-8 nopadding-left padding-bottom">
+                                    <input class="jscolor" value="white" id="mainTextColor">
+                                </div>
+                            </div>
+
+                            <h3 class="cpDiv">Location Name:</h3>
+                            <input type="text" class="form-control margin-bottom" id="mainTextInput">
+
+                            <h3 class="cpDiv">Secondary Text:</h3>
+
+                            <input type="text" class="form-control margin-bottom" id="secTextInput">
+
+                            <button type="button" class="btn" id="update">
                                 Update
                                 </button>
+                        </form>
 
-                            <br><br> Location Text Horizontal Position:
-                            <br>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="locHPSlider" oninput="updateLHPS(this.value);">
-                            <p>Value: <span id="locHPText">50</span></p>
+                        <div id="sliders">
+                            <h3 class="cpDiv">Main Text</h3>
+                            <h3>Horizontal Position:</h3>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="MHPSlider" oninput="updateMHPS(this.value);">
+                            <h3>Vertical Position:</h3>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="MVPSlider" oninput="updateMVPS(this.value);">
+                            <h3>Font Size</h3>
+                            <input type="range" min="1" max="1000" value="500" class="slider" id="MFSSlider" oninput="updateMFSS(this.value);">
+                            <br>Outline Color: <input class="jscolor" value="white" id="outlineColor">
+                            <br><br>
+                            <h3 class="cpDiv">Secondary Text</h3>
+                            <h3>Horizontal Position:</h3>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="SHPSlider" oninput="updateSHPS(this.value);">
+                            <h3>Vertical Position:</h3>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="SVPSlider" oninput="updateSVPS(this.value);">
+                            <h3>Font Size</h3>
+                            <input type="range" min="1" max="1000" value="500" class="slider" id="SFSSlider" oninput="updateSFSS(this.value);">
 
-                            <br><br> Location Text Vertical Position:
-                            <br>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="locVPSlider" oninput="updateLVPS(this.value);">
-                            <p>Value: <span id="locVPText">50</span></p>
-
-                            <br><br> Location Text Font Size:
-                            <br>
-                            <input type="range" min="1" max="1000" value="50" class="slider" id="locVPSlider" oninput="updateLFSS(this.value);">
                             <p>Value: <span id="locFSText">50</span></p>
 
-                            <br><br>
+                            <h3 class="cpDiv">Border:</h3>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Border Image</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Worn</a>
+                                    <a class="dropdown-item" href="#">Striped</a>
+                                    <a class="dropdown-item" href="#">Plain</a>
+                                </div>
+                            </div>
 
-
-                        </form>
+                            <button type="button" class="btn" id="export">
+                                Export Image
+                                </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-9">
-                    <div id="workspace" class="overlay">
-                        <img class="imgSize" id="bgImg" src="img/background.jpg">
-                        <!--https://stackoverflow.com/questions/4908171/how-to-show-local-picture-in-web-page-->
-
-
-                        <div class="text-location" id="locationText">
-                            Beach
+                <div class="printArea">
+                    <div class="col-8">
+                        <div id="workspace" class="overlay">
+                            <img class="imgSize" id="mainImg" src="img/background.jpg">
+                            <div id="mainColor"></div>
+                            <div class="text-main" id="mainText">
+                                Beach
+                            </div>
+                            <div class="text-sec" id="secText">
+                                Greetings<br>&nbsp;&nbsp;&nbsp; from...
+                            </div>
+                            <img class="imgSize" id="border" src="img/worn%20border.png">
+                            <img class="imgSize" id="overlay" src="img/white-linen.png">
                         </div>
-
-                        <div class="text-intro" id="introText">
-                            Greetings<br>&nbsp;&nbsp;&nbsp; from...
-                        </div>
-
-                        <img class="imgSize" id="border" src="img/worn%20border.png">
-
-                        <img class="imgSize" id="overlay" src="img/white-linen.png">
                     </div>
                 </div>
+
             </div>
         </main>
 
