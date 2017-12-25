@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Page Title</title>
+    <title>RetroCard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -35,10 +35,11 @@
         <header>
             <div class="row">
                 <div class="col-12">
-                    Vintage Postcard Generator
+                    &nbsp;&nbsp;RetroCard
+                    <span class="subheading">Vintage Postcard Generator</span>
                 </div>
             </div>
-            <div class="row stripe-1" id="headerbar">
+            <div class="row" id="headerbar">
                 &nbsp;
             </div>
         </header>
@@ -48,7 +49,8 @@
                 <div class="col-4" id="cpColumn">
                     <div class="form-group" id=controlPanel>
                         <form action="#">
-                            <h3 class="cpDiv">Background:</h3>
+                            <h1 class="cpDiv1">Images</h1>
+                            <h2 class="cpDiv2">Background:</h2>
 
                             <div class="row">
                                 <div class="col-4 nopadding-right">
@@ -73,7 +75,7 @@
                                 </div>
                             </div>
 
-                            <h3 class="cpDiv">Main Text:</h3>
+                            <h2 class="cpDiv2">Main Text:</h2>
 
                             <div class="row">
                                 <div class="col-4 nopadding-right">
@@ -98,10 +100,12 @@
                                 </div>
                             </div>
 
-                            <h3 class="cpDiv">Location Name:</h3>
+                            <h1 class="cpDiv1">Text</h1>
+
+                            <h2 class="cpDiv2">Location Name:</h2>
                             <input type="text" class="form-control margin-bottom" id="mainTextInput">
 
-                            <h3 class="cpDiv">Secondary Text:</h3>
+                            <h2 class="cpDiv2">Secondary Text:</h2>
 
                             <input type="text" class="form-control margin-bottom" id="secTextInput">
 
@@ -110,46 +114,106 @@
                                 </button>
                         </form>
 
+                        <h1 class="cpDiv1">Text Appearance</h1>
                         <div id="sliders">
-                            <h3 class="cpDiv">Main Text</h3>
-                            <h3>Horizontal Position:</h3>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="MHPSlider" oninput="updateMHPS(this.value);">
-                            <h3>Vertical Position:</h3>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="MVPSlider" oninput="updateMVPS(this.value);">
-                            <h3>Font Size</h3>
-                            <input type="range" min="1" max="1000" value="500" class="slider" id="MFSSlider" oninput="updateMFSS(this.value);">
-                            <br>Outline Color: <input class="jscolor" value="white" id="outlineColor">
-                            <br><br>
-                            <h3 class="cpDiv">Secondary Text</h3>
-                            <h3>Horizontal Position:</h3>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="SHPSlider" oninput="updateSHPS(this.value);">
-                            <h3>Vertical Position:</h3>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="SVPSlider" oninput="updateSVPS(this.value);">
-                            <h3>Font Size</h3>
-                            <input type="range" min="1" max="1000" value="500" class="slider" id="SFSSlider" oninput="updateSFSS(this.value);">
+                            <h2 class="cpDiv2">Main Text:</h2>
+                            <div class="margin-left">
+                                <a>Font:</a>
+                                <select id="mainFont" class="input margin-bottom">
+                                <option value="Alegreya Sans SC" selected="selected">Alegreya Sans SC</option>        
+                                <option value="Arial" selected="selected">Arial</option>
+                                <option value="Bangers" selected="selected">Bangers</option>
+                                <option value="Bevan" selected="selected">Bevan</option>      
+                                <option value="Bowlby One SC" selected="selected">Bowlby One SC</option>
+                                <option value="Bungee Inline" selected="selected">Bungee Inline</option>
+                                <option value="Changa One" selected="selected">Changa One</option>
+                                <option value="Cinzel" selected="selected">Cinzel</option>        
+                                <option value="Impact" selected="selected">Impact</option>
+                                <option value="Knewave" selected="selected">Knewave</option>        
+                                <option value="Lilita One" selected="selected">Lilita One</option>        
+                                <option value="Luckiest Guy" selected="selected">Luckiest Guy</option>  
+                                <option value="Merienda One" selected="selected">Merienda One</option>        
+                                <option value="Rammetto One" selected="selected">Rammetto One</option>        
+                                <option value="Satisfy" selected="selected">Satisfy</option>        
+                                <option value="Sigmar One" selected="selected">Sigmar One</option>        
+                                <option value="Teko" selected="selected">Teko</option>            
+                                <option value="Titan One" selected="selected">Titan One</option>
+                            </select>
+                                <br>
 
-                            <p>Value: <span id="locFSText">50</span></p>
-
-                            <h3 class="cpDiv">Border:</h3>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Border Image</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Worn</a>
-                                    <a class="dropdown-item" href="#">Striped</a>
-                                    <a class="dropdown-item" href="#">Plain</a>
-                                </div>
+                                <a>Horizontal Position:</a>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="MHPSlider" oninput="updateMHPS(this.value);">
+                                <h3>Vertical Position:</h3>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="MVPSlider" oninput="updateMVPS(this.value);">
+                                <h3>Font Size</h3>
+                                <input type="range" min="1" max="1000" value="500" class="slider" id="MFSSlider" oninput="updateMFSS(this.value);">
+                                <br>Outline Color: <input class="jscolor margin-bottom" value="white" id="mainOutlineColor">
+                                <br>
                             </div>
 
+                            <h2 class="cpDiv2">Secondary Text:</h2>
+                            <div class="margin-left">
+                                <a>Font:</a>
+                                <select id="secFont" class="input margin-bottom">
+                                <option value="Alegreya Sans SC" selected="selected">Alegreya Sans SC</option>        
+                                <option value="Arial" selected="selected">Arial</option>
+                                <option value="Bangers" selected="selected">Bangers</option>
+                                <option value="Bevan" selected="selected">Bevan</option>      
+                                <option value="Bowlby One SC" selected="selected">Bowlby One SC</option>
+                                <option value="Bungee Inline" selected="selected">Bungee Inline</option>
+                                <option value="Changa One" selected="selected">Changa One</option>
+                                <option value="Cinzel" selected="selected">Cinzel</option>        
+                                <option value="Impact" selected="selected">Impact</option>
+                                <option value="Knewave" selected="selected">Knewave</option>        
+                                <option value="Lilita One" selected="selected">Lilita One</option>        
+                                <option value="Luckiest Guy" selected="selected">Luckiest Guy</option>  
+                                <option value="Merienda One" selected="selected">Merienda One</option>        
+                                <option value="Rammetto One" selected="selected">Rammetto One</option>        
+                                <option value="Satisfy" selected="selected">Satisfy</option>        
+                                <option value="Sigmar One" selected="selected">Sigmar One</option>        
+                                <option value="Teko" selected="selected">Teko</option>            
+                                <option value="Titan One" selected="selected">Titan One</option>
+                            </select>
+                                <br>
+
+                                <h3>Horizontal Position:</h3>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="SHPSlider" oninput="updateSHPS(this.value);">
+                                <h3>Vertical Position:</h3>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="SVPSlider" oninput="updateSVPS(this.value);">
+                                <h3>Font Size</h3>
+                                <input type="range" min="1" max="1000" value="500" class="slider" id="SFSSlider" oninput="updateSFSS(this.value);">
+
+                                <br>Interior Color: <input class="jscolor margin-bottom" value="white" id="secInteriorColor">
+
+                                <br>Outline Color: <input class="jscolor margin-bottom" value="white" id="secOutlineColor">
+
+                                <br>Shadow Color: <input class="jscolor margin-bottom" value="white" id="secShadowColor">
+                                <br>
+                            </div>
+                            <h1 class="cpDiv1">Border</h1>
+                            <div class="margin-left margin-bottom">
+                                <select id="borderSelect" class="input">
+                                <option value="plain" selected="selected">Plain - White</option>
+                                <option value="yellow" selected="selected">Plain - Yellow</option>        
+                                <option value="worn" selected="selected">Worn</option>
+                                <option value="striped" selected="selected">Striped</option>      
+                            </select>
+                            </div>
+
+
+                            <h1 class="cpDiv1">Export</h1>
                             <button type="button" class="btn" id="export">
-                                Export Image
+                                Save Image
                                 </button>
+                            <a href="#" class="button" id="btn-download" download="postcard.png">Download</a>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="printArea">
                     <div class="col-8">
-                        <div id="workspace" class="overlay">
+                        <div id="workspace" class="overlay canvasContainer">
                             <img class="imgSize" id="mainImg" src="img/background.jpg">
                             <div id="mainColor"></div>
                             <div class="text-main" id="mainText">
@@ -158,10 +222,12 @@
                             <div class="text-sec" id="secText">
                                 Greetings<br>&nbsp;&nbsp;&nbsp; from...
                             </div>
-                            <img class="imgSize" id="border" src="img/worn%20border.png">
                             <img class="imgSize" id="overlay" src="img/white-linen.png">
+                            <img class="imgSize" id="border" src="img/yellow.png">
                         </div>
                     </div>
+                    <canvas id="exportArea" width="1800" height="1080" class="canvasCanvas"></canvas>
+
                 </div>
 
             </div>

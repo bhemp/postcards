@@ -1,6 +1,6 @@
-# Vintage Postcard Generator
+# RetroCard - Vintage Postcard Generator
 
-The Vintage Postcard Generator allows a user to quickly generate a retro-styled postcard using their own photos.
+RetroCard allows a user to quickly generate a vintage-styled postcard using their own photos.
 
 
 I originally envisioned this as a native mobile app, but it currently only uses HTML, CSS, and Javascript/JQuery. I've started this as a final project for a Intro to Computer Science class. As my skills increase, I can see this being greatly improved by implementing a more advanced JavaScript or mobile framework.
@@ -25,9 +25,13 @@ N/A
 
 ## TODOs
 
-* Add options for changing fonts
-* Add options to change secondary font color
-* Finish implementation of border selection
+* Add options for changing fonts - Done
+* Add options to change secondary font color - Done
+* Finish implementation of border selection - Done
+* Letters with individual positions
+* Letters with individual backgrounds
+* Text Warping
+* Image to drawing effects
 * Improve function of image export - currently printing to PDF to preserve formatting - tried printing canvas with mixed success
 * Improve overall UX/UI
 

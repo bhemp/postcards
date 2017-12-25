@@ -3,7 +3,7 @@ $(document).ready(function () {
     var mainImgRadioToggle = 'image';
     var mainTextRadioToggle = 'image';
 
-    //    BACKGROUND
+    //    IMAGES
     //    ---------------------
 
     //    MAIN BACKGROUND COLOR
@@ -55,8 +55,21 @@ $(document).ready(function () {
         }
     });
 
+    //    Changes the border file
+    var borderName = 'plain'
+    $('#borderSelect').change(function () {
+        borderName = 'img/' + this.value + '.png';
+        $('#border').attr('src', borderName);
+    });
+
     //  TEXT APPEARANCE
     //  ----------------------
+
+    var mainTextFont = 'arial';
+    $('#mainFont').change(function () {
+        mainTextFont = this.value;
+        $('#mainText').css('font-family', mainTextFont);
+    });
 
     var mainTextColor = '#FFFFFF';
     $('#mainTextColor').change(function () {
@@ -66,10 +79,34 @@ $(document).ready(function () {
         }
     });
 
-    var outlineColor = '#FFFFFF';
-    $('#outlineColor').change(function () {
-        outlineColor = '#' + this.value;
-        $('#mainText').css('-webkit-text-stroke-color', outlineColor);
+    var mainOutlineColor = '#FFFFFF';
+    $('#mainOutlineColor').change(function () {
+        mainOutlineColor = '#' + this.value;
+        $('#mainText').css('-webkit-text-stroke-color', mainOutlineColor);
+    });
+
+    var secTextFont = 'arial';
+    $('#secFont').change(function () {
+        secTextFont = this.value;
+        $('#secText').css('font-family', secTextFont);
+    });
+
+    var secOutlineColor = '#FFFFFF';
+    $('#secOutlineColor').change(function () {
+        secOutlineColor = '#' + this.value;
+        $('#secText').css('-webkit-text-stroke-color', secOutlineColor);
+    });
+
+    var secInteriorColor = '#FFFFFF';
+    $('#secInteriorColor').change(function () {
+        secInteriorColor = '#' + this.value;
+        $('#secText').css('color', secInteriorColor);
+    });
+
+    var secShadowColor = '#FFFFFF';
+    $('#secShadowColor').change(function () {
+        secShadowColor = '6px 6px #' + this.value;
+        $('#secText').css('text-shadow', secShadowColor);
     });
 
 
@@ -127,14 +164,57 @@ $(document).ready(function () {
     //  -----------------------------
     //    It would appear that there isn't a simple JS way to export the rendered canvas to an image file while preserving all of the image features (e.g. text clipping). For this implementation, printing to PDF seems to be the best way to preserve the rendered image.
 
-    $('#export').click(function () {
-        var mode = 'iframe'; //popup
-        var close = mode == "popup";
-        var options = {
-            mode: mode,
-            popClose: close
-        };
-        $("div.printArea").printArea(options);
+    $('#btn-download').click(function (e) {
+        var canvas = document.getElementById("exportArea"),
+            ctx = canvas.getContext('2d'),
+            mainImage = document.getElementById('mainImg'),
+            mainColor = document.getElementById('mainColor'),
+            mainText = document.getElementById('mainText'),
+            secText = document.getElementById('secText'),
+            overlay = document.getElementById('overlay'),
+            border = document.getElementById('border');
+
+        //        need to incorporate this method:
+        //        https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Drawing_DOM_objects_into_a_canvas
+        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
+            '<foreignObject width="100%" height="100%">' +
+            '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+            '<em>I</em> like ' +
+            '<span style="color:white; text-shadow:0 0 2px blue;">' +
+            'cheese</span>' +
+            '</div>' +
+            '</foreignObject>' +
+            '</svg>';
+
+        var DOMURL = window.URL || window.webkitURL || window;
+
+        var img = new Image();
+        var svg = new Blob([data], {
+            type: 'image/svg+xml'
+        });
+        var url = DOMURL.createObjectURL(svg);
+
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+            DOMURL.revokeObjectURL(url);
+        }
+
+        img.src = url;
+
+        //        ctx.Font("120px Arial");
+
+        ctx.drawImage(mainImage, 0, 0);
+        //        ctx.fillStyle(mainColor, 0, 0);
+        //        ctx.fillText('BEACH', 0, 0);
+        //        ctx.fillText(secText, 0, 0);
+        ctx.drawImage(overlay, 0, 0);
+        ctx.drawImage(border, 0, 0);
+        ctx.drawImage(img, 0, 0);
+
+
+        var dataURL = canvas.to('image/png');
+        document.getElementById('btn-download').href = dataURL;
+
     });
 
 }); // end of document.ready

@@ -16,23 +16,29 @@ section {
 header {
     font-family: Satisfy;
     font-size: 60px;
-    text-align: center;
-    color: white;
-    background: #267A6A;
-}
-
-#headerbar {
-    height: 20px;
-    border-bottom: 2px solid darkgray;
-}
-
-.stripe-1 {
+    text-align: left;
     color: white;
     background: #044438;
 }
 
+#headerbar {
+    height: 20px;
+    border-bottom: 15px solid #044438;
+    background: #CBE8E2;
+}
+
+.subheading {
+    font-family: 'arial';
+    font-size: .4em;
+    font-style: italics;
+}
+
+.margin-left {
+    margin-left: 50px;
+}
+
 main {
-    background: #ebebeb;
+    background: #3b3b3b;
 }
 
 #cpColumn {
@@ -67,18 +73,41 @@ main {
     font-family: arial;
     font-size: 24px;
     text-align: left;
-    /*    max-width: 400px;*/
+    /*        max-width: 400px;*/
 }
 
 #controlPanel .btn {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 1em;
     font-size: 1em;
     background-color: #CBE8E2;
+    border: 1px solid #044438;
 }
 
 #controlPanel input {
     font-size: 1em;
 }
+
+.cpDiv1 {
+    background-color: #044438;
+    border-radius: 10px;
+    font-size: 2em;
+    font-family: Satisfy;
+    color: white;
+    padding: 5px;
+}
+
+.cpDiv2 {
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    color: black;
+    padding: 5px;
+}
+
 
 #workspace {
     position: relative;
@@ -117,7 +146,6 @@ main {
     -webkit-text-fill-color: transparent;
     /* overrides the white text color in webkit browsers */
     -webkit-background-clip: text;
-
 }
 
 #workspace .text-sec {
@@ -125,12 +153,12 @@ main {
     top: 10%;
     left: 10%;
     color: dodgerblue;
-    font-size: 36px;
+    font-size: 120px;
     font-family: Knewave;
     -moz-text-stroke-color: #000;
     -webkit-text-stroke-color: #000;
-    -moz-text-stroke-width: 1px;
-    -webkit-text-stroke-width: 1px;
+    -moz-text-stroke-width: 5px;
+    -webkit-text-stroke-width: 5px;
     text-shadow: 6px 6px #fff;
 }
 
@@ -188,14 +216,6 @@ main {
 
 }
 
-.cpDiv {
-    background-color: #044438;
-    border-radius: 5px;
-    font-size: 1em;
-    color: white;
-    padding: 5px;
-}
-
 input[type=radio] {
     transform: scale(2);
     -moz-transform: scale(2);
@@ -203,10 +223,6 @@ input[type=radio] {
     -webkit-transform: scale(2);
     -o-transform: scale(2);
     display: inline-block;
-}
-
-#mainColor {
-    background-color: red;
 }
 
 #sliders h3 {
@@ -218,11 +234,24 @@ input[type=radio] {
     padding: 0;
 }
 
-#controlPanel .btn {
-    display: flex;
-    justify-content: center;
-    width: 75%;
-    margin: auto;
-    margin-bottom: 1em;
-    border: 1px solid #044438;
+
+.canvasContainer {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.canvasCanvas {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.canvasImage {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
