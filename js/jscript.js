@@ -10,20 +10,20 @@
         var mainImageType = 'image';
 
         var mainTextValue = 'Beach';
-        var mainTextX = 400;
-        var mainTextY = 700;
+        var mainTextX = 250;
+        var mainTextY = 1000;
         var mainTextFS = '400px';
-        var mainTextFontFam = 'arial';
+        var mainTextFontFam = 'Bowlby One SC';
         var mainTextWeight = 'bold';
         var mainTextOutlineColor = 'black';
         var mainTextOutlineThk = 5;
         var mainTextType = 'image';
 
-        var secTextValue = 'Welcome to';
+        var secTextValue = 'Welcome to the';
         var secTextX = 150;
         var secTextY = 200;
         var secTextFS = '100px';
-        var secTextFontFam = 'arial';
+        var secTextFontFam = 'Bangers';
         var secTextWeight = 'bold';
         var secTextColor = 'white';
         var secTextOutlineColor = 'black';
@@ -82,9 +82,6 @@
         }
 
         // INITALIZE CANVAS
-
-        //    Clear canvas
-        ctx.clearRect(0, 0, 1800, 1080);
 
         //    Background Image
         mainImage.onload = function () {
@@ -199,7 +196,6 @@
             mainImage.onload = function () {
                 drawImage();
             }
-
         });
 
         //    MAIN TEXT BACKGROUND FILE
@@ -263,15 +259,8 @@
             drawImage();
         });
 
-        var secInteriorColor = '#FFFFFF';
         $('#secInteriorColor').change(function () {
             secTextColor = '#' + this.value;
-            drawImage();
-        });
-
-        var secShadowColor = '#FFFFFF';
-        $('#secShadowColor').change(function () {
-            secShadowColor = '6px 6px #' + this.value;
             drawImage();
         });
 
