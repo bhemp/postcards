@@ -47,6 +47,12 @@
         var canvasWidth = 1800;
         var canvasHeight = 1080;
 
+        WebFont.load({
+            google: {
+                families: ['Bangers', 'Bowlby+One+SC', 'Bungee+Inline', 'Changa+One', 'Lilita+One', 'Luckiest+Guy', 'Rammetto+One', 'Sigmar+One', 'Titan+One', 'Merienda+One', 'Teko', 'Cinzel', 'Bevan', 'Alegreya+Sans+SC', 'Knewave', 'Satisfy']
+            }
+        });
+
         //    CANVAS
         //    ---------------------
         //    Draws layers to canvas
