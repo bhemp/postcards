@@ -31,8 +31,10 @@ N/A
 * Letters with individual positions
 * Letters with individual backgrounds
 * Text Warping
+* More image size options
+* Improve smoothness of redraw
 * Image to drawing effects
-* Improve function of image export - currently printing to PDF to preserve formatting - tried printing canvas with mixed success
+* Improve function of image export - changed drawing method from layered images to drawing to canvas and exporting canvas to image
 * Improve overall UX/UI
 
 ## Built With

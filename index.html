@@ -142,11 +142,11 @@
                                 <br>
 
                                 <a>Horizontal Position:</a>
-                                <input type="range" min="1" max="100" value="50" class="slider" id="MHPSlider" oninput="updateMHPS(this.value);">
+                                <input type="range" min="1" max="1800" value="900" class="slider" id="MHPSlider">
                                 <h3>Vertical Position:</h3>
-                                <input type="range" min="1" max="100" value="50" class="slider" id="MVPSlider" oninput="updateMVPS(this.value);">
+                                <input type="range" min="1" max="1080" value="500" class="slider" id="MVPSlider">
                                 <h3>Font Size</h3>
-                                <input type="range" min="1" max="1000" value="500" class="slider" id="MFSSlider" oninput="updateMFSS(this.value);">
+                                <input type="range" min="1" max="1000" value="500" class="slider" id="MFSSlider">
                                 <br>Outline Color: <input class="jscolor margin-bottom" value="white" id="mainOutlineColor">
                                 <br>
                             </div>
@@ -177,11 +177,11 @@
                                 <br>
 
                                 <h3>Horizontal Position:</h3>
-                                <input type="range" min="1" max="100" value="50" class="slider" id="SHPSlider" oninput="updateSHPS(this.value);">
+                                <input type="range" min="1" max="1800" value="900" class="slider" id="SHPSlider">
                                 <h3>Vertical Position:</h3>
-                                <input type="range" min="1" max="100" value="50" class="slider" id="SVPSlider" oninput="updateSVPS(this.value);">
+                                <input type="range" min="1" max="1080" value="500" class="slider" id="SVPSlider">
                                 <h3>Font Size</h3>
-                                <input type="range" min="1" max="1000" value="500" class="slider" id="SFSSlider" oninput="updateSFSS(this.value);">
+                                <input type="range" min="1" max="1000" value="500" class="slider" id="SFSSlider">
 
                                 <br>Interior Color: <input class="jscolor margin-bottom" value="white" id="secInteriorColor">
 
@@ -200,12 +200,9 @@
                             </select>
                             </div>
 
-
                             <h1 class="cpDiv1">Export</h1>
-                            <button type="button" class="btn" id="export">
-                                Save Image
-                                </button>
-                            <a href="#" class="button" id="btn-download" download="postcard.png">Download</a>
+                            <a href="#" class="btn" id="btn-download" download="postcard.jpg">Download as image</a>
+
 
                         </div>
                     </div>
@@ -214,19 +211,10 @@
                 <div class="printArea">
                     <div class="col-8">
                         <div id="workspace" class="overlay canvasContainer">
-                            <img class="imgSize" id="mainImg" src="img/background.jpg">
-                            <div id="mainColor"></div>
-                            <div class="text-main" id="mainText">
-                                Beach
-                            </div>
-                            <div class="text-sec" id="secText">
-                                Greetings<br>&nbsp;&nbsp;&nbsp; from...
-                            </div>
-                            <img class="imgSize" id="overlay" src="img/white-linen.png">
-                            <img class="imgSize" id="border" src="img/yellow.png">
+                            <canvas id="canvas" width="1800" height="1080" class="canvasCanvas"></canvas>
                         </div>
                     </div>
-                    <canvas id="exportArea" width="1800" height="1080" class="canvasCanvas"></canvas>
+
 
                 </div>
 

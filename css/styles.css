@@ -87,6 +87,10 @@ main {
     border: 1px solid #044438;
 }
 
+#btn-download {
+    color: black;
+}
+
 #controlPanel input {
     font-size: 1em;
 }
@@ -139,7 +143,7 @@ main {
     -webkit-text-stroke-color: #ffffff;
     -moz-text-stroke-width: 3px;
     -webkit-text-stroke-width: 3px;
-    background: url(../img/foreground.jpeg) no-repeat center center;
+    background: url(../img/foreground.jpg) no-repeat center center;
     background-size: cover;
     color: #fff;
     /* -webkit-background-clip clips the background of the element to the text */
@@ -233,6 +237,7 @@ input[type=radio] {
     font-size: 1em;
     padding: 0;
 }
+
 
 
 .canvasContainer {

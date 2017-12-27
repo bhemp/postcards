@@ -1,251 +1,311 @@
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    var mainImgRadioToggle = 'image';
-    var mainTextRadioToggle = 'image';
+        //    GLOBAL VARIABLES
+        //    ---------------------
 
-    //    IMAGES
-    //    ---------------------
+        var mainImgRadioToggle = 'image';
+        var mainTextRadioToggle = 'image';
 
-    //    MAIN BACKGROUND COLOR
-    // Get main background color value from color picker
+        var mainBGColor = 'blue';
+        var mainImageType = 'image';
 
-    var mainBGColor = '#FFFFFF';
-    $('#mainImgColor').change(function () {
-        mainBGColor = '#' + this.value;
-        if (mainImgRadioToggle == 'color') {
-            $('#mainColor').css('background-color', mainBGColor);
-        }
-    });
+        var mainTextValue = 'Beach';
+        var mainTextX = 400;
+        var mainTextY = 700;
+        var mainTextFS = '400px';
+        var mainTextFontFam = 'arial';
+        var mainTextWeight = 'bold';
+        var mainTextOutlineColor = 'black';
+        var mainTextOutlineThk = 5;
+        var mainTextType = 'image';
 
-    //    CHECK RADIO BUTTON STATUS
-    //    Controls the radio button choice between a background image and solid color
+        var secTextValue = 'Welcome to';
+        var secTextX = 150;
+        var secTextY = 200;
+        var secTextFS = '100px';
+        var secTextFontFam = 'arial';
+        var secTextWeight = 'bold';
+        var secTextColor = 'white';
+        var secTextOutlineColor = 'black';
+        var secTextOutlineThk = 5;
+        var secTextType = 'color';
 
-    $('input[type=radio][name=mainImgRadio]').change(function () {
-        if (this.value == 'image') {
-            mainImgRadioToggle = 'image';
+        var mainImageFilename;
 
-        } else if (this.value == 'color') {
-            mainImgRadioToggle = 'color';
-        }
-    });
+        var mainImage = new Image();
+        var mainTextImage = new Image();
+        var secTextImage = new Image();
+        var overlayImage = new Image();
+        var borderImage = new Image();
 
-    //    Change solid color opacity based on radio click
-    $('#RadioMC').click(function () {
-        $('#mainColor').css('background-color', mainBGColor);
-        $('#mainColor').css('opacity', '1');
-    });
+        mainImage.src = 'img/background.jpg';
+        mainTextImage.src = 'img/foreground.jpg';
+        mainTextImage.src = 'img/foreground.jpg';
+        overlayImage.src = 'img/white-linen.png';
+        borderImage.src = 'img/worn.png';
 
-    $('#RadioMI').click(function () {
-        $('#mainColor').css('opacity', '0');
+        var canvasWidth = 1800;
+        var canvasHeight = 1080;
 
-    });
+        //    CANVAS
+        //    ---------------------
+        //    Draws layers to canvas
 
-    //    Changes the main background image after choosing a local file
-    $('#mainImgFilename').change(function () {
-        if (mainImgRadioToggle == 'image') {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#mainImg').attr('src', e.target.result);
-                    $('#workspace.color').css('opacity', '1');
+        //    https://tympanus.net/codrops/2013/12/02/techniques-for-creating-textured-text/
+        //   https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Drawing_DOM_objects_into_a_canvas
 
-                }
-                reader.readAsDataURL(this.files[0]);
+        var canvas = $('#canvas');
+        var ctx = canvas[0].getContext('2d');
+        var mainTextFont = mainTextWeight + ' ' + mainTextFS + ' ' + mainTextFontFam;
+        var secTextFont = secTextWeight + ' ' + secTextFS + ' ' + secTextFontFam;
+        var mainTextColor = 'red';
+
+        function drawText(text, x, y, font, color, outlineColor, outlineThk, type, image) {
+
+            ctx.font = font;
+            ctx.lineWidth = outlineThk;
+            ctx.strokeStyle = outlineColor;
+            if (type == 'image') {
+                ctx.fillStyle = ctx.createPattern(image, 'repeat');
+            } else {
+                ctx.fillStyle = color;
             }
+            ctx.textAlign = 'left';
+            ctx.fillText(text, x, y);
+            ctx.strokeText(text, x, y);
         }
-    });
 
-    //    Changes the border file
-    var borderName = 'plain'
-    $('#borderSelect').change(function () {
-        borderName = 'img/' + this.value + '.png';
-        $('#border').attr('src', borderName);
-    });
+        function drawImage() {
 
-    //  TEXT APPEARANCE
-    //  ----------------------
-
-    var mainTextFont = 'arial';
-    $('#mainFont').change(function () {
-        mainTextFont = this.value;
-        $('#mainText').css('font-family', mainTextFont);
-    });
-
-    var mainTextColor = '#FFFFFF';
-    $('#mainTextColor').change(function () {
-        mainTextColor = '#' + this.value;
-        if (mainTextRadioToggle == 'color') {
-            $('#mainText').css('-webkit-text-fill-color', mainTextColor);
-        }
-    });
-
-    var mainOutlineColor = '#FFFFFF';
-    $('#mainOutlineColor').change(function () {
-        mainOutlineColor = '#' + this.value;
-        $('#mainText').css('-webkit-text-stroke-color', mainOutlineColor);
-    });
-
-    var secTextFont = 'arial';
-    $('#secFont').change(function () {
-        secTextFont = this.value;
-        $('#secText').css('font-family', secTextFont);
-    });
-
-    var secOutlineColor = '#FFFFFF';
-    $('#secOutlineColor').change(function () {
-        secOutlineColor = '#' + this.value;
-        $('#secText').css('-webkit-text-stroke-color', secOutlineColor);
-    });
-
-    var secInteriorColor = '#FFFFFF';
-    $('#secInteriorColor').change(function () {
-        secInteriorColor = '#' + this.value;
-        $('#secText').css('color', secInteriorColor);
-    });
-
-    var secShadowColor = '#FFFFFF';
-    $('#secShadowColor').change(function () {
-        secShadowColor = '6px 6px #' + this.value;
-        $('#secText').css('text-shadow', secShadowColor);
-    });
-
-
-    //    CHECK RADIO BUTTON STATUS
-    //    Controls the radio button choice between a background image and solid color
-
-    $('input[type=radio][name=mainTextRadio]').change(function () {
-        if (this.value == 'image') {
-            mainTextRadioToggle = 'image';
-
-        } else if (this.value == 'color') {
-            mainTextRadioToggle = 'color';
-        }
-    });
-
-
-    //    Change solid color opacity based on radio click
-    $('#RadioTC').click(function () {
-        $('#mainText').css('-webkit-text-fill-color', mainTextColor);
-
-    });
-
-    $('#RadioTI').click(function () {
-        $('#mainText').css('-webkit-text-fill-color', 'transparent');
-    });
-
-
-    //    Changes the main text background image after choosing a local file
-    $('#mainTextFilename').change(function () {
-        if (mainTextRadioToggle == 'image') {
-            var file = document.getElementById('mainTextFilename').files[0];
-            var reader = new FileReader();
-            mainTextImgPath = "url(" + reader.result + ")";
-            reader.onloadend = function () {
-                document.getElementById('mainText').style.backgroundImage = "url(" + reader.result + ")";
+            //    Background Image
+            if (mainImageType == 'image') {
+                ctx.drawImage(mainImage, 0, 0, 1800, 1080);
+            } else {
+                ctx.fillStyle = mainBGColor;
+                ctx.fillRect(0, 0, 1800, 1080);
             }
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {}
+
+            //    Main Text
+            drawText(mainTextValue, mainTextX, mainTextY, mainTextFont, mainTextColor, mainTextOutlineColor, mainTextOutlineThk, mainTextType, mainTextImage);
+
+            //    Secondary Text
+            drawText(secTextValue, secTextX, secTextY, secTextFont, secTextColor, secTextOutlineColor, secTextOutlineThk, secTextType, secTextImage);
+
+            //    Overlay Image
+            ctx.drawImage(overlayImage, 0, 0, 1800, 1080);
+
+            //    BorderImage
+            ctx.drawImage(borderImage, 0, 0, 1800, 1080);
+
         }
-    });
 
-    //  TEXT VALUES
-    //  ------------------------
-    //    Updates the image text when the "Update" button is clicked
-    $('#update').click(function () {
-        var mainTextValue = $('#mainTextInput').val();
-        var secTextValue = $('#secTextInput').val();
+        drawImage();
 
-        $('#mainText').html(mainTextValue);
-        $('#secText').html(secTextValue);
-    });
 
-    //  IMAGE EXPORT
-    //  -----------------------------
-    //    It would appear that there isn't a simple JS way to export the rendered canvas to an image file while preserving all of the image features (e.g. text clipping). For this implementation, printing to PDF seems to be the best way to preserve the rendered image.
+        //  HANDLER FUNCTIONS
+        //  ----------------------------------
+        //  Checks controls for changes
 
-    $('#btn-download').click(function (e) {
-        var canvas = document.getElementById("exportArea"),
-            ctx = canvas.getContext('2d'),
-            mainImage = document.getElementById('mainImg'),
-            mainColor = document.getElementById('mainColor'),
-            mainText = document.getElementById('mainText'),
-            secText = document.getElementById('secText'),
-            overlay = document.getElementById('overlay'),
-            border = document.getElementById('border');
+        //    MAIN BACKGROUND COLOR
+        // Get main background color value from color picker
 
-        //        need to incorporate this method:
-        //        https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Drawing_DOM_objects_into_a_canvas
-        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
-            '<foreignObject width="100%" height="100%">' +
-            '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
-            '<em>I</em> like ' +
-            '<span style="color:white; text-shadow:0 0 2px blue;">' +
-            'cheese</span>' +
-            '</div>' +
-            '</foreignObject>' +
-            '</svg>';
-
-        var DOMURL = window.URL || window.webkitURL || window;
-
-        var img = new Image();
-        var svg = new Blob([data], {
-            type: 'image/svg+xml'
+        $('#mainImgColor').change(function () {
+            mainBGColor = '#' + this.value;
+            drawImage();
         });
-        var url = DOMURL.createObjectURL(svg);
 
-        img.onload = function () {
-            ctx.drawImage(img, 0, 0);
-            DOMURL.revokeObjectURL(url);
+        //    MAIN BACKGROUND TOGGLE
+        //    Controls the radio button choice between a background image and solid color
+
+        $('input[type=radio][name=mainImgRadio]').change(function () {
+            if (this.value == 'image') {
+                mainImageType = 'image';
+            } else if (this.value == 'color') {
+                mainImageType = 'color';
+            }
+            drawImage();
+        });
+
+        //    MAIN TEXT BACKGROUND TOGGLE
+        //    Controls the radio button choice between a background image and solid color
+
+        $('input[type=radio][name=mainTextRadio]').change(function () {
+            if (this.value == 'image') {
+                mainTextType = 'image';
+            } else if (this.value == 'color') {
+                mainTextType = 'color';
+            }
+            drawImage();
+        });
+
+        //    MAIN BACKGROUND FILE
+        //    Changes the main background image after choosing a local file
+        $('#mainImgFilename').change(function (e) {
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                // Great success! All the File APIs are supported.
+            } else {
+                alert('The File APIs are not fully supported in this browser.');
+            }
+
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            var result;
+            reader.readAsDataURL(file);
+            reader.onloadend = function (e) {
+                mainImage.src = e.target.result;
+            }
+
+            drawImage();
+        });
+
+        //    MAIN TEXT BACKGROUND FILE
+        //    Changes the main text background image after choosing a local file
+        $('#mainTextFilename').change(function () {
+            if (mainTextRadioToggle == 'image') {
+                var file = document.getElementById('mainTextFilename').files[0];
+                var reader = new FileReader();
+                mainTextImgPath = "url(" + reader.result + ")";
+                reader.onloadend = function () {
+                    document.getElementById('mainText').style.backgroundImage = "url(" + reader.result + ")";
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {}
+            }
+        });
+
+        //    BORDER FILE
+        //    Changes the border file
+        $('#borderSelect').change(function () {
+            borderImage.src = 'img/' + this.value + '.png';
+            drawImage();
+        });
+
+        //  TEXT APPEARANCE
+        //  ----------------------
+
+        $('#mainFont').change(function () {
+            mainTextFontFam = this.value;
+            mainTextFont = mainTextWeight + ' ' + mainTextFS + ' ' + mainTextFontFam;
+            drawImage();
+        });
+
+        $('#mainTextColor').change(function () {
+            mainTextColor = '#' + this.value;
+            drawImage();
+        });
+
+        $('#mainOutlineColor').change(function () {
+            mainTextOutlineColor = '#' + this.value;
+            drawImage();
+        });
+
+        $('#secFont').change(function () {
+            secTextFontFam = this.value;
+            secTextFont = secTextWeight + ' ' + secTextFS + ' ' + secTextFontFam;
+            drawImage();
+        });
+
+        $('#secOutlineColor').change(function () {
+            secTextOutlineColor = '#' + this.value;
+            drawImage();
+        });
+
+        var secInteriorColor = '#FFFFFF';
+        $('#secInteriorColor').change(function () {
+            secTextColor = '#' + this.value;
+            drawImage();
+        });
+
+        var secShadowColor = '#FFFFFF';
+        $('#secShadowColor').change(function () {
+            secShadowColor = '6px 6px #' + this.value;
+            drawImage();
+        });
+
+        //  TEXT VALUES
+        //  ------------------------
+        //  Updates the image text when the "Update" button is clicked
+
+        $('#update').click(function () {
+            mainTextValue = $('#mainTextInput').val();
+            secTextValue = $('#secTextInput').val();
+            drawImage();
+        });
+
+        //  SLIDERS
+        //  --------------------------
+        //  Updates the text appearance based on slider changes 
+
+        //  Main Text - Horizontal
+        $('#MHPSlider').change(function () {
+            mainTextX = $('#MHPSlider').val();
+            drawImage();
+        });
+
+        //  Main Text - Vertical
+        $('#MVPSlider').change(function () {
+            mainTextY = $('#MVPSlider').val();
+            drawImage();
+        });
+
+        //  Main Text - Font Size
+        $('#MFSSlider').change(function () {
+            mainTextFS = $('#MFSSlider').val() + 'px';
+            mainTextFont = mainTextWeight + ' ' + mainTextFS + ' ' + mainTextFontFam;
+            drawImage();
+        });
+
+        //  Secondary Text - Horizontal
+        $('#SHPSlider').change(function () {
+            secTextX = $('#SHPSlider').val();
+            drawImage();
+        });
+
+        //  Secondary Text - Vertical
+        $('#SVPSlider').change(function () {
+            secTextY = $('#SVPSlider').val();
+            drawImage();
+        });
+
+        //  Secondary Text - Font Size
+        $('#SFSSlider').change(function () {
+            secTextFS = $('#SFSSlider').val() + 'px';
+            secTextFont = secTextWeight + ' ' + secTextFS + ' ' + secTextFontFam;
+            drawImage();
+        });
+
+        $('#btn-download').click(function (e) {
+            downloadCanvas();
+        });
+
+    }); // end of document.ready
+
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
         }
+        return new Blob([u8arr], {
+            type: mime
+        });
+    }
 
-        img.src = url;
+    var downloadCanvas = function () {
+        var cvs = document.getElementById('canvas');
+        var button = document.getElementById('btn-download');
+        var imgData = cvs.toDataURL({
+            format: 'png',
+            multiplier: 4
+        });
+        var strDataURI = imgData.substr(22, imgData.length);
+        var blob = dataURLtoBlob(imgData);
+        var objurl = URL.createObjectURL(blob);
 
-        //        ctx.Font("120px Arial");
-
-        ctx.drawImage(mainImage, 0, 0);
-        //        ctx.fillStyle(mainColor, 0, 0);
-        //        ctx.fillText('BEACH', 0, 0);
-        //        ctx.fillText(secText, 0, 0);
-        ctx.drawImage(overlay, 0, 0);
-        ctx.drawImage(border, 0, 0);
-        ctx.drawImage(img, 0, 0);
-
-
-        var dataURL = canvas.to('image/png');
-        document.getElementById('btn-download').href = dataURL;
-
-    });
-
-}); // end of document.ready
-
-
-function updateMHPS(val) {
-    document.getElementById('MHPSlider').innerHTML = val;
-    document.getElementById('mainText').style.left = val + '%';
-}
-
-function updateMVPS(val) {
-    document.getElementById('MVPSlider').innerHTML = val;
-    document.getElementById('mainText').style.top = val + '%';
-}
-
-function updateMFSS(val) {
-    document.getElementById('MFSSlider').innerHTML = val;
-    document.getElementById('mainText').style.fontSize = val + 'px';
-}
-
-function updateSHPS(val) {
-    document.getElementById('SHPSlider').innerHTML = val;
-    document.getElementById('secText').style.left = val + '%';
-}
-
-function updateSVPS(val) {
-    document.getElementById('SVPSlider').innerHTML = val;
-    document.getElementById('secText').style.top = val + '%';
-}
-
-function updateSFSS(val) {
-    document.getElementById('SFSSlider').innerHTML = val;
-    document.getElementById('secText').style.fontSize = val + 'px';
-}
+        button.href = objurl;
+    }
