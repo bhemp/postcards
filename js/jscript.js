@@ -75,7 +75,40 @@
             ctx.strokeText(text, x, y);
         }
 
+        // INITALIZE CANVAS
+
+        //    Clear canvas
+        ctx.clearRect(0, 0, 1800, 1080);
+
+        //    Background Image
+        mainImage.onload = function () {
+            if (mainImageType == 'image') {
+                ctx.drawImage(mainImage, 0, 0, 1800, 1080);
+            } else {
+                ctx.fillStyle = mainBGColor;
+                ctx.fillRect(0, 0, 1800, 1080);
+            }
+
+            //    Main Text
+
+            drawText(mainTextValue, mainTextX, mainTextY, mainTextFont, mainTextColor, mainTextOutlineColor, mainTextOutlineThk, mainTextType, mainTextImage);
+
+            //    Secondary Text
+            drawText(secTextValue, secTextX, secTextY, secTextFont, secTextColor, secTextOutlineColor, secTextOutlineThk, secTextType, secTextImage);
+
+            //    Overlay Image
+
+            ctx.drawImage(overlayImage, 0, 0, 1800, 1080);
+
+            //    BorderImage
+
+            ctx.drawImage(borderImage, 0, 0, 1800, 1080);
+        }
+
         function drawImage() {
+
+            //    Clear canvas
+            ctx.clearRect(0, 0, 1800, 1080);
 
             //    Background Image
             if (mainImageType == 'image') {
@@ -93,6 +126,7 @@
 
             //    Overlay Image
             ctx.drawImage(overlayImage, 0, 0, 1800, 1080);
+
 
             //    BorderImage
             ctx.drawImage(borderImage, 0, 0, 1800, 1080);
@@ -123,6 +157,7 @@
             } else if (this.value == 'color') {
                 mainImageType = 'color';
             }
+
             drawImage();
         });
 
@@ -155,23 +190,31 @@
             reader.onloadend = function (e) {
                 mainImage.src = e.target.result;
             }
+            mainImage.onload = function () {
+                drawImage();
+            }
 
-            drawImage();
         });
 
         //    MAIN TEXT BACKGROUND FILE
         //    Changes the main text background image after choosing a local file
-        $('#mainTextFilename').change(function () {
-            if (mainTextRadioToggle == 'image') {
-                var file = document.getElementById('mainTextFilename').files[0];
-                var reader = new FileReader();
-                mainTextImgPath = "url(" + reader.result + ")";
-                reader.onloadend = function () {
-                    document.getElementById('mainText').style.backgroundImage = "url(" + reader.result + ")";
-                }
-                if (file) {
-                    reader.readAsDataURL(file);
-                } else {}
+        $('#mainTextFilename').change(function (e) {
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                // Great success! All the File APIs are supported.
+            } else {
+                alert('The File APIs are not fully supported in this browser.');
+            }
+
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            var result;
+            reader.readAsDataURL(file);
+            reader.onloadend = function (e) {
+                mainTextImage.src = e.target.result;
+            }
+            mainTextImage.onload = function () {
+                drawImage();
             }
         });
 
@@ -179,7 +222,9 @@
         //    Changes the border file
         $('#borderSelect').change(function () {
             borderImage.src = 'img/' + this.value + '.png';
-            drawImage();
+            borderImage.onload = function () {
+                drawImage();
+            }
         });
 
         //  TEXT APPEARANCE
